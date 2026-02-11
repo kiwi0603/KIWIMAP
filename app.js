@@ -336,7 +336,7 @@ function loadNaverMapScript(clientId, keyParam) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     const param = keyParam || "ncpClientId";
-    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?${param}=${clientId}`;
+    script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?${param}=${clientId}`;
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
