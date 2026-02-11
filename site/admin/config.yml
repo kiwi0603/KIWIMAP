@@ -1,0 +1,102 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB/REPO
+  branch: main
+  base_url: https://YOUR_AUTH_SERVER
+  auth_endpoint: /api/auth
+
+site_url: https://YOUR_GITHUB_PAGES_URL
+publish_mode: editorial_workflow
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "places"
+    label: "업체"
+    folder: "data/places"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    fields:
+      - label: "업체명"
+        name: "name"
+        widget: "string"
+      - label: "주소"
+        name: "address"
+        widget: "string"
+      - label: "카테고리"
+        name: "category"
+        widget: "select"
+        options: ["한식", "중식", "일식", "양식", "디저트", "카페"]
+      - label: "한줄소개"
+        name: "intro"
+        widget: "text"
+        required: false
+      - label: "별점"
+        name: "rating"
+        widget: "number"
+        min: 0
+        max: 5
+        step: 0.5
+        value_type: "float"
+      - label: "대표메뉴"
+        name: "menus"
+        widget: "list"
+        fields:
+          - { label: "메뉴명", name: "name", widget: "string" }
+          - { label: "가격", name: "price", widget: "string", required: false }
+          - { label: "추천", name: "is_recommend", widget: "boolean", required: false }
+      - label: "영업시간"
+        name: "hours"
+        widget: "object"
+        fields:
+          - { label: "월", name: "mon", widget: "string", required: false }
+          - { label: "화", name: "tue", widget: "string", required: false }
+          - { label: "수", name: "wed", widget: "string", required: false }
+          - { label: "목", name: "thu", widget: "string", required: false }
+          - { label: "금", name: "fri", widget: "string", required: false }
+          - { label: "토", name: "sat", widget: "string", required: false }
+          - { label: "일", name: "sun", widget: "string", required: false }
+      - label: "휴무일"
+        name: "holiday"
+        widget: "list"
+        required: false
+        field:
+          label: "요일"
+          name: "day"
+          widget: "select"
+          options: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+      - label: "임시휴무"
+        name: "temp_closed"
+        widget: "boolean"
+        required: false
+      - label: "전화번호"
+        name: "phone"
+        widget: "string"
+        required: false
+      - label: "네이버 플레이스 링크"
+        name: "naver_place"
+        widget: "string"
+        required: false
+      - label: "사진"
+        name: "photos"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "이미지", name: "url", widget: "image" }
+          - { label: "대체 텍스트", name: "alt", widget: "string", required: false }
+      - label: "검색 태그"
+        name: "tags"
+        widget: "list"
+        required: false
+      - label: "위도"
+        name: "lat"
+        widget: "number"
+        required: false
+        value_type: "float"
+      - label: "경도"
+        name: "lng"
+        widget: "number"
+        required: false
+        value_type: "float"

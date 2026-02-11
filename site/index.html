@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>키쉐린 가이드</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="theme-light">
+    <header class="topbar">
+      <div class="brand">
+        <h1>키쉐린 가이드</h1>
+        <p class="subtitle">대한민국 맛집 지도</p>
+      </div>
+      <div class="actions">
+        <button id="open-settings" class="btn">설정</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel filters">
+        <div class="panel-header">
+          <h2>필터</h2>
+        </div>
+        <div class="field">
+          <label for="search">검색</label>
+          <input id="search" type="text" placeholder="업체명/주소/키워드" />
+        </div>
+        <div class="field">
+          <label>카테고리</label>
+          <div id="category-filters" class="chip-group"></div>
+        </div>
+        <div class="field inline">
+          <label for="open-now">영업중</label>
+          <input id="open-now" type="checkbox" />
+        </div>
+        <div class="field inline">
+          <label for="has-recommend">추천 메뉴 있음</label>
+          <input id="has-recommend" type="checkbox" />
+        </div>
+      </aside>
+
+      <section class="panel map-panel">
+        <div class="panel-header">
+          <h2>지도</h2>
+        </div>
+        <div id="map" class="map"></div>
+        <div id="map-placeholder" class="map-placeholder">
+          네이버 지도 API 키가 설정되면 지도 표시가 활성화됩니다.
+        </div>
+      </section>
+
+      <aside class="panel list-panel">
+        <div class="panel-header">
+          <h2>업체 목록</h2>
+          <span id="result-count" class="count">0</span>
+        </div>
+        <div id="list" class="list"></div>
+      </aside>
+    </main>
+
+    <section id="detail" class="detail hidden">
+      <button id="detail-close" class="btn ghost">닫기</button>
+      <div class="detail-body">
+        <div class="detail-media">
+          <img id="detail-image" alt="" />
+        </div>
+        <div class="detail-info">
+          <h3 id="detail-name"></h3>
+          <div id="detail-rating" class="rating"></div>
+          <p id="detail-intro" class="intro"></p>
+          <div id="detail-menus" class="menus"></div>
+          <div id="detail-hours" class="hours"></div>
+          <div id="detail-contact" class="contact"></div>
+          <div id="detail-links" class="links"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="settings" class="settings hidden">
+      <div class="panel-header">
+        <h2>설정</h2>
+      </div>
+      <div class="field inline">
+        <label>테마</label>
+        <div class="segmented">
+          <button id="theme-light" class="btn small">라이트</button>
+          <button id="theme-dark" class="btn small">다크</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>관리자</label>
+        <a href="/admin/" class="btn">관리자 페이지 이동</a>
+      </div>
+      <div class="field">
+        <label>데이터 업데이트</label>
+        <p class="hint">Decap CMS에서 업체를 추가하면 자동 반영됩니다.</p>
+      </div>
+      <button id="close-settings" class="btn ghost">닫기</button>
+    </section>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
