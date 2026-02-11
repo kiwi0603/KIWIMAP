@@ -332,10 +332,11 @@ function toMinutes(value) {
   return Number(parts[0]) * 60 + Number(parts[1]);
 }
 
-function loadNaverMapScript(clientId) {
+function loadNaverMapScript(clientId, keyParam) {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${clientId}`;
+    const param = keyParam || "ncpClientId";
+    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?${param}=${clientId}`;
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
@@ -345,8 +346,9 @@ function loadNaverMapScript(clientId) {
 function initMap() {
   const cfg = window.KIWI_MAP_CONFIG || {};
   if (!cfg.naverMapClientId) return;
+  const keyParam = cfg.naverMapKeyParam || "ncpClientId";
 
-  loadNaverMapScript(cfg.naverMapClientId)
+  loadNaverMapScript(cfg.naverMapClientId, keyParam)
     .then(() => {
       const mapEl = document.getElementById("map");
       const center = new window.naver.maps.LatLng(36.5, 127.8);
