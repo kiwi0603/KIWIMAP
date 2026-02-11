@@ -1,3 +1,3 @@
 window.KIWI_MAP_CONFIG = {
-  naverMapClientId: "fbc8eiuc6o",
+  naverMapClientId: "y79ek9o55m",
 };
