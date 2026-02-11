@@ -1,0 +1,29 @@
+{
+  "id": "sample-busan",
+  "name": "키위디저트",
+  "address": "부산광역시 해운대구 우동",
+  "lat": 35.1631,
+  "lng": 129.1635,
+  "category": "디저트",
+  "intro": "계절 과일로 만드는 수제 디저트",
+  "rating": 3.5,
+  "menus": [
+    { "name": "키위 타르트", "price": "6500", "is_recommend": true },
+    { "name": "레몬 파이", "price": "6000", "is_recommend": true }
+  ],
+  "hours": {
+    "mon": "휴무",
+    "tue": "12:00-20:00",
+    "wed": "12:00-20:00",
+    "thu": "12:00-20:00",
+    "fri": "12:00-20:00",
+    "sat": "12:00-21:00",
+    "sun": "12:00-21:00"
+  },
+  "holiday": [],
+  "temp_closed": false,
+  "phone": "051-000-0000",
+  "naver_place": "",
+  "photos": [],
+  "tags": ["디저트", "카페"]
+}
