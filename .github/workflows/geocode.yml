@@ -1,0 +1,40 @@
+name: Geocode Places
+
+  on:
+    workflow_dispatch:
+    push:
+      paths:
+        - "data/places/*.json"
+        - "data/places_template.csv"
+    geocode:
+      if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip geocode')
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: "3.11"
+
+        - name: Install dependencies
+          run: pip install requests
+
+        - name: Geocode
+          env:
+            NAVER_MAPS_CLIENT_ID: ${{ secrets.NAVER_MAPS_CLIENT_ID }}
+            NAVER_MAPS_CLIENT_SECRET: ${{ secrets.NAVER_MAPS_CLIENT_SECRET }}
+          run: |
+            python tools/geocode_places.py
+
+        - name: Commit updates
+          run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/places/*.json data/places.json
+            if git diff --staged --quiet; then
+              echo "No changes to commit"
+              exit 0
+            fi
+            git commit -m "Update geocodes [skip geocode]"
+            git push
