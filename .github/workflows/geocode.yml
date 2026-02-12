@@ -1,13 +1,12 @@
 name: Geocode Places
 
-  on:
+  "on":
     workflow_dispatch:
-    push:
       paths:
-        - "data/places/*.json"
         - "data/places_template.csv"
+
+  jobs:
     geocode:
-      if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, 'skip geocode')
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
