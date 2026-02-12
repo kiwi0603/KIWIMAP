@@ -1,34 +1,5 @@
 [
   {
-    "id": "sample-seoul",
-    "name": "키위식당",
-    "address": "서울특별시 중구 세종대로 110",
-    "lat": 37.5666805,
-    "lng": 126.9784147,
-    "category": "한식",
-    "intro": "담백한 국물과 집밥 같은 한식을 제공하는 곳",
-    "rating": 4.5,
-    "menus": [
-      { "name": "김치찌개", "price": "9000", "is_recommend": true },
-      { "name": "제육볶음", "price": "10000", "is_recommend": false }
-    ],
-    "hours": {
-      "mon": "11:00-21:00",
-      "tue": "11:00-21:00",
-      "wed": "11:00-21:00",
-      "thu": "11:00-21:00",
-      "fri": "11:00-21:00",
-      "sat": "11:00-20:00",
-      "sun": "휴무"
-    },
-    "holiday": ["sun"],
-    "temp_closed": false,
-    "phone": "02-123-4567",
-    "naver_place": "",
-    "photos": [],
-    "tags": ["국밥", "직장인", "점심"]
-  },
-  {
     "id": "sample-busan",
     "name": "키위디저트",
     "address": "부산광역시 해운대구 우동",
@@ -38,8 +9,16 @@
     "intro": "계절 과일로 만드는 수제 디저트",
     "rating": 3.5,
     "menus": [
-      { "name": "키위 타르트", "price": "6500", "is_recommend": true },
-      { "name": "레몬 파이", "price": "6000", "is_recommend": true }
+      {
+        "name": "키위 타르트",
+        "price": "6500",
+        "is_recommend": true
+      },
+      {
+        "name": "레몬 파이",
+        "price": "6000",
+        "is_recommend": true
+      }
     ],
     "hours": {
       "mon": "휴무",
@@ -55,6 +34,52 @@
     "phone": "051-000-0000",
     "naver_place": "",
     "photos": [],
-    "tags": ["디저트", "카페"]
+    "tags": [
+      "디저트",
+      "카페"
+    ]
+  },
+  {
+    "id": "sample-seoul",
+    "name": "키위식당",
+    "address": "서울특별시 중구 세종대로 110",
+    "lat": 37.5666805,
+    "lng": 126.9784147,
+    "category": "한식",
+    "intro": "담백한 국물과 집밥 같은 한식을 제공하는 곳",
+    "rating": 4.5,
+    "menus": [
+      {
+        "name": "김치찌개",
+        "price": "9000",
+        "is_recommend": true
+      },
+      {
+        "name": "제육볶음",
+        "price": "10000",
+        "is_recommend": false
+      }
+    ],
+    "hours": {
+      "mon": "11:00-21:00",
+      "tue": "11:00-21:00",
+      "wed": "11:00-21:00",
+      "thu": "11:00-21:00",
+      "fri": "11:00-21:00",
+      "sat": "11:00-20:00",
+      "sun": "휴무"
+    },
+    "holiday": [
+      "sun"
+    ],
+    "temp_closed": false,
+    "phone": "02-123-4567",
+    "naver_place": "",
+    "photos": [],
+    "tags": [
+      "국밥",
+      "직장인",
+      "점심"
+    ]
   }
 ]
