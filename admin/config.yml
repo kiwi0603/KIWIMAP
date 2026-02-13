@@ -1,11 +1,13 @@
 backend:
   name: github
-  repo: YOUR_GITHUB/REPO
+  repo: kiwi0603/KIWIMAP
   branch: main
-  base_url: https://YOUR_AUTH_SERVER
-  auth_endpoint: /api/auth
+  # Cloudflare Worker OAuth 프록시 URL(예: https://kiwimap-auth.kiwi0603.workers.dev)
+  base_url: https://kiwimap-auth.lyt4642.workers.dev
+  # decap-proxy 템플릿 기준 인증 엔드포인트
+  auth_endpoint: /auth
 
-site_url: https://YOUR_GITHUB_PAGES_URL
+site_url: https://kiwi0603.github.io/KIWIMAP/
 publish_mode: editorial_workflow
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
