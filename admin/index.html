@@ -4,8 +4,60 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>키쉐린 가이드 관리자</title>
-  <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    #cms-loading, #cms-error {
+      padding: 16px;
+      font-size: 14px;
+      color: #222;
+    }
+    #cms-error {
+      display: none;
+      color: #b00020;
+      white-space: pre-wrap;
+    }
+  </style>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
+  <script
+    src="https://unpkg.com/decap-cms@3/dist/decap-cms.js"
+    onerror="window.__cmsScriptError = true;"
+  ></script>
 </head>
 <body>
+  <div id="cms-loading">CMS 로딩 중입니다...</div>
+  <div id="cms-error"></div>
+  <script>
+    (function () {
+      var loadingEl = document.getElementById("cms-loading");
+      var errorEl = document.getElementById("cms-error");
+
+      function showError(message) {
+        if (loadingEl) loadingEl.style.display = "none";
+        if (errorEl) {
+          errorEl.style.display = "block";
+          errorEl.textContent = message;
+        }
+      }
+
+      if (window.__cmsScriptError) {
+        showError("Decap CMS 스크립트를 불러오지 못했습니다. 네트워크/확장프로그램(광고 차단) 확인 후 새로고침하세요.");
+        return;
+      }
+
+      if (!window.CMS) {
+        showError("CMS 객체를 찾지 못했습니다. 잠시 후 Ctrl+F5로 강력 새로고침 해주세요.");
+        return;
+      }
+
+      try {
+        window.CMS.init();
+        if (loadingEl) loadingEl.style.display = "none";
+      } catch (err) {
+        showError("CMS 초기화 실패: " + (err && err.message ? err.message : String(err)));
+      }
+    })();
+  </script>
 </body>
 </html>
