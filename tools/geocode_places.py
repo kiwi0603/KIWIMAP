@@ -28,7 +28,10 @@ def geocode_address(address: str, client_id: str, client_secret: str) -> Optiona
     params = {"query": address}
     res = requests.get(API_URL, headers=headers, params=params, timeout=10)
     if res.status_code != 200:
-        raise RuntimeError(f"Geocode failed ({res.status_code}): {res.text[:200]}")
+        detail = res.text[:200]
+        if res.status_code in (401, 403):
+            raise PermissionError(f"Geocode auth failed ({res.status_code}): {detail}")
+        raise RuntimeError(f"Geocode failed ({res.status_code}): {detail}")
 
     payload = res.json()
     addresses = payload.get("addresses") or []
@@ -68,6 +71,9 @@ def main() -> None:
         return
 
     updated = 0
+    failed = 0
+    no_result = 0
+    fatal_auth_error = False
     for path in sorted(PLACES_DIR.glob("*.json")):
         place = load_place(path)
         if not needs_geocode(place):
@@ -80,11 +86,18 @@ def main() -> None:
 
         try:
             result = geocode_address(address, client_id, client_secret)
+        except PermissionError as exc:
+            failed += 1
+            fatal_auth_error = True
+            print(f"Fail(auth): {path.name} - {exc}")
+            break
         except Exception as exc:
+            failed += 1
             print(f"Fail: {path.name} - {exc}")
             continue
 
         if not result:
+            no_result += 1
             print(f"No result: {path.name}")
             continue
 
@@ -95,7 +108,7 @@ def main() -> None:
         updated += 1
         time.sleep(0.2)
 
-    print(f"Updated: {updated}")
+    print(f"Updated: {updated} / No result: {no_result} / Failed: {failed}")
 
     items = []
     for path in sorted(PLACES_DIR.glob("*.json")):
@@ -104,6 +117,9 @@ def main() -> None:
     with OUTPUT.open("w", encoding="utf-8") as f:
         json.dump(items, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+    if fatal_auth_error:
+        raise SystemExit("Fatal geocode auth error. Check NAVER_MAPS_CLIENT_ID/SECRET and API subscription.")
 
 
 if __name__ == "__main__":
