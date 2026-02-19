@@ -10,7 +10,7 @@ backend:
 site_url: https://kiwi0603.github.io/KIWIMAP/
 publish_mode: editorial_workflow
 media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+public_folder: "assets/uploads"
 
 collections:
   - name: "places"
